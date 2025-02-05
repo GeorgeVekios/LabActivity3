@@ -11,16 +11,22 @@ class MainActivity : AppCompatActivity() {
     // Declare view properties - the first one is done for you
     lateinit var displayTextView: TextView
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         // Initialize with views defined in Layout - the first one is done for you
         displayTextView = findViewById(R.id.displayTextView)
-
+        val edit: EditText = findViewById(R.id.nameEditText)
         
         findViewById<Button>(R.id.clickMeButton).setOnClickListener {
-            displayTextView.text = "Hello, ${findViewById<EditText>(R.id.nameEditText).text}"
+            val name = edit.text.toString()
+            if(name.isEmpty()) {
+                displayTextView.text = "Error, no name has been entered"
+            }
+            else
+                displayTextView.text = "Hello, ${findViewById<EditText>(R.id.nameEditText).text}"
         }
 
 
